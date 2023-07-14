@@ -1,0 +1,3 @@
+[submodule "golf_dashboard"]
+	path = golf_dashboard
+	url = https://github.com/Frallmeister/golf_dashboard.git
