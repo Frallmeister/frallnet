@@ -51,3 +51,7 @@ services:
 secrets:
   db-password:
     file: database/.env
+
+networks:
+  backnet:
+  frontnet:
