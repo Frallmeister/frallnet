@@ -2,7 +2,7 @@ services:
 
   database:
     image: mysql:8
-    container_name: mysqldb
+    container_name: database
     command: '--default-authentication-plugin=mysql_native_password'
     restart: always
     secrets:
@@ -12,10 +12,10 @@ services:
     networks:
       - backnet
     environment:
-      - MYSQL_DATABASE=golf_progress
       - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password
     expose:
       - 3306
+      - 33060
 
   golf_dashboard:
     build: golf_dashboard
@@ -38,15 +38,12 @@ services:
     restart: always
     volumes:
       - ./nginx/default.conf:/tmp/default.conf
-    # environment:
-    #   - FLASK_SERVER_ADDR=golf_dashboard:8000
     ports:
       - "80:80"
     depends_on:
       - golf_dashboard
     networks:
       - frontnet
-    # command: /app/start.sh
 
 secrets:
   db-password:
