@@ -32,6 +32,17 @@ services:
       - backnet
       - frontnet
     command: gunicorn -t 60 -b 0.0.0.0:8000 app:server
+  
+  website:
+    build: flaskapp
+    image: webimage
+    container_name: flaskapp
+    restart: always
+    ports:
+      - 8001:8001
+    networks:
+      - frontnet
+    command: gunicorn -t 60 -w 3 -b 0.0.0.0:8001 app:app
 
   nginx:
     build: nginx
