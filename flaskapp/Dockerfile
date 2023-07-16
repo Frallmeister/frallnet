@@ -6,7 +6,8 @@ RUN apt install nano
 RUN python -m pip install --upgrade pip
 
 # Create nonroot user
-RUN useradd nonrootRUN mkdir /home/app
+RUN useradd nonroot
+RUN mkdir /home/app
 RUN chown -R nonroot:nonroot /home/app
 
 # Setup log files
